@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox Message Form with Paragraphs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .checkbox-container {
+            margin-bottom: 20px;
+        }
+        .message-container {
+            margin-top: 20px;
+            font-weight: bold;
+            white-space: pre-line; /* Preserve line breaks in the output */
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Select Options to Build Your Message</h2>
+
+    <form id="checkboxForm">
+        <div class="checkbox-container">
+            <input type="checkbox" id="option1" value="Hello, " onclick="updateMessage()"> <label for="option1">Hello</label><br>
+            <input type="checkbox" id="option2" value="How are you today? <br>" onclick="updateMessage()"> <label for="option2">How are you?</label><br>
+            <input type="checkbox" id="option3" value="I hope you're doing well. <p>Let's keep in touch!</p>" onclick="updateMessage()"> <label for="option3">I hope you're doing well.</label><br>
+            <input type="checkbox" id="option4" value="Have a great day! <br>" onclick="updateMessage()"> <label for="option4">Have a great day!</label><br>
+            <input type="checkbox" id="option5" value="Best regards, <p>See you soon!</p>" onclick="updateMessage()"> <label for="option5">Best regards</label><br>
+        </div>
+    </form>
+
+    <div class="message-container">
+        <p><strong>Your Message:</strong></p>
+        <div id="finalMessage">Your message will appear here.</div>
+    </div>
+
+    <script>
+        function updateMessage() {
+            // Get all the checkboxes that are checked
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            var message = "";
+
+            // Loop through each checked checkbox and append its value to the message
+            checkboxes.forEach(function(checkbox) {
+                message += checkbox.value;  // Append the value (which may contain <br> or <p>)
+            });
+
+            // Display the final message with HTML processing
+            document.getElementById("finalMessage").innerHTML = message || "Your message will appear here.";
+        }
+    </script>
+
+</body>
+</html>
